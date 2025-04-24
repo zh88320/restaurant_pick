@@ -200,7 +200,6 @@ class RestaurantService:
         else:
             raise ValueError("action must be 'random' or 'list'") #raise error
 
-
 service = RestaurantService(db.session)
 
 

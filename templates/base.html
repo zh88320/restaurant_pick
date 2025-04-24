@@ -16,6 +16,9 @@
           <a href="{{ url_for('list_restaurants') }}">🛠 餐廳管理</a>
           <a href="{{ url_for('approve_requests') }}">🛠 協作者申請</a>
         {% endif %}
+        {% if current_user.role == 'contributor' %}
+          <a href="{{ url_for('list_restaurants') }}">🛠 餐廳管理</a>
+        {% endif %}
         {% if current_user.role == 'user' and not current_user.contributor_pending %}
           <form action="{{ url_for('apply_contributor') }}" method="POST">
           <button class="primary">📩 申請成為協作者</button>
