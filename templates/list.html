@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<a class="btn-add" href="{{ url_for('add_edit') }}">➕ 新增餐廳</a>
+<table>
+  <thead><tr><th>ID</th><th>名稱</th><th>類型</th><th>價位</th><th>位置</th><th>網站</th><th>操作</th></tr></thead>
+  <tbody>
+    {% for s in stores %}
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.category }}</td>
+      <td>{{ s.price_range }}</td>
+      <td>{{ s.location }}</td>
+      <td>
+        {% if s.website %}
+          <a href="{{ s.website }}">{{ s.website }}</a>
+        {% endif %}
+      </td>
+      <td>
+        <a href="{{ url_for('add_edit', rid=s.id) }}">✏️ 編輯</a>
+        {% if current_user.role == 'admin' %}
+          <form method="POST" action="{{ url_for('delete', rid=s.id) }}" onsubmit="return confirm('確定刪除？')" style="display:inline">
+            <button class="btn-delete">🗑</button>
+          </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

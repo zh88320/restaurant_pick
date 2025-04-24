@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>我的收藏</h2>
+<table>
+  <thead><tr><th>ID</th><th>名稱</th><th>類型</th><th>價位</th><th>位置</th><th>網站</th></tr></thead>
+  <tbody>
+    {% for s in stores %}
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.category }}</td>
+      <td>{{ s.price_range }}</td>
+      <td>{{ s.location }}</td>
+      <td>
+        {% if s.website %}
+          <a href="{{ s.website }}">{{ s.website }}</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

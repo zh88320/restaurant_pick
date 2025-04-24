@@ -1,0 +1,156 @@
+/* Reset + 基本樣式 */
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #eef2f5, #ffffff);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  background: linear-gradient(90deg, #0055aa, #0077cc);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+nav a {
+  margin-left: 1rem;
+  color: #fff;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+nav form {
+  display: inline;
+}
+
+nav form button.primary {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+nav p {
+  display: inline;
+  color: white;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+/* 表單與按鈕 */
+form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+form select, form input {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+}
+
+.inline-form {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background: #007acc;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #005fa3;
+}
+
+/* 抽出餐廳結果區 */
+.result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f1f9ff;
+  border-left: 6px solid #007acc;
+  border-radius: 10px;
+}
+
+.result h2 {
+  margin: 0 0 0.5rem;
+}
+
+/* 收藏按鈕 */
+button.favorite {
+  background: #ffe066;
+  color: #333;
+  margin-top: 1rem;
+}
+
+button.favorite:hover {
+  background: #ffcd39;
+}
+
+/* 餐廳清單樣式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.flash {
+  background: #ffdddd;
+  color: #c00;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  list-style: none;
+}

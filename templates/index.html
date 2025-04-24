@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="lottery">
+  <form method="POST">
+    <label>想吃類型：
+      <select name="category">
+        <option value="">不限</option>
+        {% for c in categories %}<option>{{ c }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>價位：
+      <select name="price">
+        <option value="">不限</option>
+        {% for p in prices %}<option>{{ p }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>位置：
+      <select name="location">
+        <option value="">不限</option>
+        {% for l in locations %}<option>{{ l }}</option>{% endfor %}
+      </select>
+    </label>
+    <button class="primary" name="action" value="random">🎲 抽一間</button>
+    <button class="primary" name="action" value="list">📋 顯示全部</button>
+  </form>
+  {% if choices %}
+    {% for choice in choices %}
+      <article class="result">
+        <h2>{{ choice.name }}</h2>
+        <p>{{ choice.category }}｜{{ choice.price_range }}</p>
+        <p>{{ choice.location }}</p>
+        {% if choice.website %}
+          <a href={{ choice.website }}>{{ choice.website }}</a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+          <form method="POST" action="{{ url_for('toggle_favorite', rid=choice.id) }}">
+            <button class="favorite">⭐ 加入 / 取消收藏</button>
+          </form>
+        {% endif %}
+      </article>
+    {% endfor %}
+  {% endif %}
+</section>
+{% endblock %}

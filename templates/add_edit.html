@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ '編輯' if store else '新增' }}餐廳</h2>
+<form method="POST">
+  <label>名稱：<input name="name" required value="{{ store.name if store }}"></label>
+  <label>類型：<input name="category" required value="{{ store.category if store }}"></label>
+  <label>價位：<select name="price_range" required value="{{ store.price_range if store }}">
+    {% for price in ['$', '$$', '$$$'] %}
+      <option value="{{ price }}" {% if store and store.price_range == price %}selected{% endif %}>{{ price }}</option>
+    {% endfor %}
+  </select></label>
+  <label>位置：<select name="location" required value="{{ store.location if store }}">
+    {% for loc in ['中壢市區', '平鎮市區', '宵夜街', '奢侈巷', '後門', '其他'] %}
+      <option value="{{ loc }}" {% if store and store.location == loc %}selected{% endif %}>{{ loc }}</option>
+    {% endfor %}
+  </select></label>
+  <label>網站：<input name="website" value="{{ store.website if store.website }}"></label>
+  <button class="primary">{{ '更新' if store else '新增' }}</button>
+</form>
+{% endblock %}

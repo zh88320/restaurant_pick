@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中央大學美食隨機選擇器</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1><a href="{{ url_for('index') }}">🍽 中央大學美食隨機選擇器</a></h1>
+    <nav>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('my_favorites') }}">⭐ 我的收藏</a>
+        {% if current_user.role == 'admin' %}
+          <a href="{{ url_for('list_restaurants') }}">🛠 餐廳管理</a>
+          <a href="{{ url_for('approve_requests') }}">🛠 協作者申請</a>
+        {% endif %}
+        {% if current_user.role == 'user' and not current_user.contributor_pending %}
+          <form action="{{ url_for('apply_contributor') }}" method="POST">
+          <button class="primary">📩 申請成為協作者</button>
+          </form>
+        {% elif current_user.contributor_pending %}
+          <p>📬 已申請協作者，請等待管理員審核</p>
+        {% endif %}
+        <span class="user">👤 {{ current_user.username }}</span>
+        <a href="{{ url_for('logout') }}">登出</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">登入</a>
+        <a href="{{ url_for('register') }}">註冊</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+      {% for m in messages %}<li>{{ m }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
+
