@@ -1,5 +1,5 @@
 from __future__ import annotations
-import os, time, random, functools, logging, copy, click
+import os, time, random, functools, logging, click
 from typing import Callable, Any, Iterable
 import validators
 
