@@ -354,16 +354,15 @@ def add_edit(rid: int | None = None):
             flash("✓ 已新增餐廳")
         return redirect(url_for("list_restaurants"))
     return render_template("add_edit.html", store=target)
-
-
-# 管理員專屬 Routes                         
+                         
 @app.route("/restaurants")
-@admin_required
+@contributor_or_admin_required
 @timed_view
 def list_restaurants():
     stores = Restaurant.query.order_by(Restaurant.id).all()
     return render_template("list.html", stores=stores)
 
+# 管理員專屬 Routes
 @app.route("/delete/<int:rid>", methods=["POST"])
 @admin_required
 @timed_view
